@@ -1,0 +1,39 @@
+import java.io.*;
+
+public abstract class Fichero {
+
+    static String rutaA="";
+    static String rutaB="";
+    static String rutaDestino="";
+
+    public static void guardarRutas(String ruta1, String ruta2, String ruta3){
+        rutaA = ruta1;
+        rutaB= ruta2;
+        rutaDestino = ruta3;
+    }
+
+    public static void copiar() throws IOException {
+        File archivo = new File(rutaDestino);
+        BufferedReader brA = new BufferedReader(new FileReader(rutaA));
+        BufferedWriter bwA = new BufferedWriter(new FileWriter(rutaDestino,true));
+        String texto = brA.readLine();
+        while(texto != null){
+
+
+
+            bwA.write(" " +texto);
+            texto = brA.readLine();
+        }
+
+        BufferedReader brB = new BufferedReader(new FileReader(rutaB));
+        texto = brB.readLine();
+        while(texto != null){
+            bwA.write(" " +texto);
+            texto = brA.readLine();
+        }
+        brA.close();
+        brB.close();
+        bwA.flush();
+        bwA.close();
+    }
+}
